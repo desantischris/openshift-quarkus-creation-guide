@@ -25,21 +25,21 @@ In this tutorial, the user will:
 ![Project Details Page](1-openshift-demo-2.png)
 
 3. Add health checks per the following:
-  - Readiness Probe
+    - Readiness Probe
       HTTP GET on path /q/health/ready
       Port: 8081 (or your app's port)
       Initial delay: 10-30 seconds (Quarkus starts fast)
       Period: 10-30 seconds
       Timeout: 1-10 seconds
       Failure threshold: 3
-  - Liveness Probe
+    - Liveness Probe
       HTTP GET on path /q/health/live
       Port: 8081 (or your app's port)
       Initial delay: 10-30 seconds (Quarkus starts fast)
       Period: 10-30 seconds
       Timeout: 1-10 seconds
       Failure threshold: 3
-  - Startup Probe
+    - Startup Probe
       HTTP GET on path /q/health/live
       Port: 8081 (or your app's port)
       Initial delay: 10-30 seconds (Quarkus starts fast)
@@ -52,13 +52,13 @@ In this tutorial, the user will:
 ![Project Details Page](1-openshift-demo-4.png)
 
 5. Under **Workloads > Toplogy**, select the app
-  - In the properties window, select Resources
-  - Click the link for the Route at the bottom.
-  - Verify the sample app page loads
+    - In the properties window, select Resources
+    - Click the link for the Route at the bottom.
+    - Verify the sample app page loads
 ![Project Details Page](1-openshift-demo-5.png)
 
 6. Navigate to **Workoads > Deployments**.
-  - Select the app
+    - Select the app
 ![Project Details Page](1-openshift-demo-6.png)
 
 7. Increase the pods from 1 to 3.
@@ -68,7 +68,7 @@ In this tutorial, the user will:
 ![Project Details Page](1-openshift-demo-8.png)
 
 9. In the **Topology** view, start a new build
-  - Observe the build run
+    - Observe the build run
 ![Project Details Page](1-openshift-demo-9.png)
 
 10. Observe the pods redeploy with the new build
