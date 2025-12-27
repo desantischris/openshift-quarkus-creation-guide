@@ -18,11 +18,13 @@ In this tutorial, the user will:
     - Under **Getting started resources**, select **View All Samples**.
     - Select **Basic Quarkus**.
     - Name the app and click **Create**
-![Project Details Page](1-openshift-demo-1.png)
+
+![1. Selecting the Quarkus Sample from Catalog](1-openshift-demo-1.png)
 
 2. The app is created and a build is initiated.
     - Select **Add Health Checks**
-![Project Details Page](1-openshift-demo-2.png)
+
+![2. Build in Progress and Health Checks Prompt](1-openshift-demo-2.png)
 
 3. Add health checks per the following:
     - Readiness Probe
@@ -46,30 +48,38 @@ In this tutorial, the user will:
       Period: 10-30 seconds
       Timeout: 1-10 seconds
       Failure threshold: 3
-![Project Details Page](1-openshift-demo-3.png)
+
+![3. Adding Readiness and Liveness Probes](1-openshift-demo-3.png)
 
 4. Confirm the app runs without errors/issues
-![Project Details Page](1-openshift-demo-4.png)
 
-5. Under **Workloads > Toplogy**, select the app
+![4. Route Created and Exposed](1-openshift-demo-4.png)
+
+6. Under **Workloads > Toplogy**, select the app
     - In the properties window, select Resources
     - Click the link for the Route at the bottom.
     - Verify the sample app page loads
-![Project Details Page](1-openshift-demo-5.png)
+
+![5. Scaling Replicas to 3 Pods](1-openshift-demo-5.png)
 
 6. Navigate to **Workoads > Deployments**.
     - Select the app
-![Project Details Page](1-openshift-demo-6.png)
+
+![6. Multiple Pods Running](1-openshift-demo-6.png)
 
 7. Increase the pods from 1 to 3.
-![Project Details Page](1-openshift-demo-7.png)
 
-8. In the **Topology** view, observe the additional pods come online.
-![Project Details Page](1-openshift-demo-8.png)
+![7. Starting a New Build](1-openshift-demo-7.png)
 
-9. In the **Topology** view, start a new build
+9. In the **Topology** view, observe the additional pods come online.
+
+![8. New Build Complete](1-openshift-demo-8.png)
+
+10. In the **Topology** view, start a new build
     - Observe the build run
-![Project Details Page](1-openshift-demo-9.png)
+
+![9. Rolling Update in Progress](1-openshift-demo-9.png)
 
 10. Observe the pods redeploy with the new build
-![Project Details Page](1-openshift-demo-10.png)
+
+![10. All Pods Updated with New Image](1-openshift-demo-10.png)
