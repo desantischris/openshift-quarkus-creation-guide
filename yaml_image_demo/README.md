@@ -1,25 +1,14 @@
 # Item 2: YAML-Based Nginx Deployment
 
-Demonstrate manual resource creation with YAML manifests.
+This project demonstrates creating a complete application stack — Deployment, Service, and Route — entirely from raw YAML  in the OpenShift console without using the catalog wizard.
 
-- Used non-root image for OpenShift compatibility
-- Added health checks on port 8080
-- Scaled replicas
-- Exposed via Route
+# Key Features & Learnings
+- Manual resource creation: All components defined in a single YAML file for full control.
+- OpenShift compatibility: Used the non-root image nginxinc/nginx-unprivileged:1-alpine to satisfy Security Context Constraints (SCCs). OpenShift blocks root containers for security purposes causing the standard Nginx image to fail. Using a non-root version makes the deployment work smoothly.
+- Reliability: Configured readiness and liveness probes on port 8080 (path /) to ensure pods are marked Ready and traffic is routed correctly.
+- Public exposure: Created a Route to make the application accessible externally and verified the standard Nginx welcome page.
 
-
-
-
-
-
-## Overview
-In this tutorial, the user will:
-1. Deploy sample Quarkus app via the console catalog.
-2. Add readiness/liveness health checks to ensure stability.
-3. Expose the app publicly with a Route.
-4. Manually scaled replicas from 1 → 3 to demonstrate horizontal scaling and self-healing.
-5. Trigger a new source-to-image build and verified rolling update across all pods.
-6, Monitor via the Observe tab.
+This approach is common for custom or advanced deployments in enterprise environments.
 
 ## Steps
 1. In the Red Hat Developer Sandbox (https://sandbox.redhat.com/), select the **+** sign in the header at the top right of the page.
