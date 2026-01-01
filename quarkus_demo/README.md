@@ -54,7 +54,7 @@ In this tutorial, the user will:
 
 ![4. Route Created and Exposed](1-openshift-demo-4.png)
 
-6. Under **Workloads > Toplogy**, select the app
+5. Under **Workloads > Toplogy**, select the app
     - In the properties window, select Resources
     - Click the link for the Route at the bottom.
     - Verify the sample app page loads
@@ -70,11 +70,11 @@ In this tutorial, the user will:
 
 ![7. Starting a New Build](1-openshift-demo-7.png)
 
-9. In the **Topology** view, observe the additional pods come online.
+8. In the **Topology** view, observe the additional pods come online.
 
 ![8. New Build Complete](1-openshift-demo-8.png)
 
-10. In the **Topology** view, start a new build
+9. In the **Topology** view, start a new build
     - Observe the build run
 
 ![9. Rolling Update in Progress](1-openshift-demo-9.png)
