@@ -8,8 +8,8 @@ In this tutorial, the user will:
 2. Add readiness/liveness health checks to ensure stability.
 3. Expose the app publicly with a Route.
 4. Manually scaled replicas from 1 → 3 to demonstrate horizontal scaling and self-healing.
-5. Trigger a new source-to-image build and verified rolling update across all pods.
-6, Monitor via the Observe tab.
+5. Trigger a new source-to-image build and verify a rolling update across all pods.
+6, Monitor the app via the Observe tab.
 
 ## Steps
 1. In the Red Hat Developer Sandbox (https://sandbox.redhat.com/), select **Openshift**.
@@ -21,7 +21,7 @@ In this tutorial, the user will:
 ![1. Selecting the Quarkus Sample from Catalog](1-openshift-demo-1.png)
 
 2. The app is created and a build is initiated.
-    - Select **Add Health Checks**
+    - In the side panel, select **Add Health Checks**
 
 ![2. Build in Progress and Health Checks Prompt](1-openshift-demo-2.png)
 
@@ -55,7 +55,7 @@ In this tutorial, the user will:
 ![4. Route Created and Exposed](1-openshift-demo-4.png)
 
 5. Under **Workloads > Toplogy**, select the app
-    - In the properties window, select Resources
+    - In the side panel, select Resources
     - Click the link for the Route at the bottom.
     - Verify the sample app page loads
 
@@ -79,6 +79,7 @@ In this tutorial, the user will:
 
 ![9. Rolling Update in Progress](1-openshift-demo-9.png)
 
-10. Observe the pods redeploy with the new build
+10. Observe the pods rolling out with the new build
+    - In Topology, there should be a rolling update where old pods are gradually replaced by new ones, all ending in Ready with the updated build.
 
 ![10. All Pods Updated with New Image](1-openshift-demo-10.png)
