@@ -11,7 +11,7 @@ This project demonstrates deploying the Spring PetClinic Java application using 
 
 #### Steps
 
-1. In the Red Hat Developer Sandbox, click the **+ Add** button in the left navigation.
+1. In the Red Hat Developer Sandbox (https://sandbox.redhat.com/), click **+ Add** in the left navigation.
    - Select **Import from Git**.
    - **(Optional but recommended)** Fork the repo https://github.com/siamaksade/spring-petclinic to your GitHub account.
    - Ensure **Resource type** is set to **Deployment** and **Create a route to the application** is checked, then click **Create**.
@@ -19,7 +19,7 @@ This project demonstrates deploying the Spring PetClinic Java application using 
 ![1. Import from Git](3-openshift-git-import-demo-1.png)
 
 2. The application appears in the Topology view. Click the app icon.
-   - In the side panel, confirm the Scale control is set to 1; if it shows 0, increase it to 1 so one pod is always maintained.
+   - In the side panel, confirm the Scale knob shows 1; if it shows 0, increase it to 1 so one pod is always maintained.
 
 ![2. View App](3-openshift-git-import-demo-2.png)
 ![2-2. View App pod scaling](3-openshift-git-import-demo-2-2.png)
@@ -37,11 +37,11 @@ This project demonstrates deploying the Spring PetClinic Java application using 
 
 ![3. View Route](3-openshift-git-import-demo-3.png)
 
-6. Modify the value of the `welcome` property in the file `spring-petclinic/src/main/resources/messages/messages.properties`.
+6. Edit spring-petclinic/src/main/resources/messages.properties and change the welcome message.
 
 ![4. Welcome message](3-openshift-git-import-demo-4.png)
 
-7. In the app properties window, kick off another build.
+7. In the app properties window, start another build.
 
 ![5. New Build](3-openshift-git-import-demo-5.png)
 
