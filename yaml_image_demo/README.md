@@ -13,9 +13,8 @@ This approach is common for custom or advanced deployments in enterprise environ
 ## Source YAML
 Full manifest used for deployment: [source_yaml/source.yaml](source_yaml/source.yaml)
 
-## Generated + Enhanced YAML
-Exported Deployment after adding health checks: [generated_yaml/](generated_yaml/)
-generated-yaml/deployment.yaml
+## Generated YAML
+Exported after adding health checks: [generated_yaml/](generated_yaml/)
 
 ## Steps
 1. In the Red Hat Developer Sandbox (https://sandbox.redhat.com/), select the **+** sign in the header at the top right of the page.
