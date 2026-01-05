@@ -1,0 +1,64 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ''
+    app.openshift.io/vcs-uri: 'https://github.com/desantischris/spring-petclinic'
+    openshift.io/generated-by: OpenShiftWebConsole
+  resourceVersion: '6990071033'
+  name: spring-petclinic
+  uid: 1548b025-6588-4c8f-ac27-d53e92fa5320
+  creationTimestamp: '2026-01-01T16:18:15Z'
+  generation: 1
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: image.openshift.io/v1
+      time: '2026-01-01T16:18:15Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+  namespace: desantischris-dev
+  labels:
+    app: spring-petclinic
+    app.kubernetes.io/component: spring-petclinic
+    app.kubernetes.io/instance: spring-petclinic
+    app.kubernetes.io/name: spring-petclinic
+    app.kubernetes.io/part-of: sample-app
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+spec:
+  lookupPolicy:
+    local: false
+status:
+  dockerImageRepository: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/spring-petclinic'
+  publicDockerImageRepository: default-route-openshift-image-registry.apps.rm3.7wse.p1.openshiftapps.com/desantischris-dev/spring-petclinic
+  tags:
+    - tag: latest
+      items:
+        - created: '2026-01-01T21:36:15Z'
+          dockerImageReference: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/spring-petclinic@sha256:7916b65e17ae269396a3caab890191ce2e63302c22961287ec3e0b225eead3bb'
+          image: 'sha256:7916b65e17ae269396a3caab890191ce2e63302c22961287ec3e0b225eead3bb'
+          generation: 1
+        - created: '2026-01-01T21:19:39Z'
+          dockerImageReference: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/spring-petclinic@sha256:e6cad48e941d4d698a50d84ba5b4d709665bb4478faac502f367bc37e17a33c6'
+          image: 'sha256:e6cad48e941d4d698a50d84ba5b4d709665bb4478faac502f367bc37e17a33c6'
+          generation: 1
+        - created: '2026-01-01T16:20:15Z'
+          dockerImageReference: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/spring-petclinic@sha256:1e42eb1625e13dd664ac2ffec26a014ba2f59915b37df3b206b9b2c9e34c45f0'
+          image: 'sha256:1e42eb1625e13dd664ac2ffec26a014ba2f59915b37df3b206b9b2c9e34c45f0'
+          generation: 1
