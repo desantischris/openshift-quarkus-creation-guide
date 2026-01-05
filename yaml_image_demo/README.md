@@ -10,84 +10,17 @@ This project demonstrates creating a complete application stack — Deployment, 
 
 This approach is common for custom or advanced deployments in enterprise environments.
 
+## Source YAML
+Full manifest used for deployment: [source_yaml/source.yaml](source_yaml/source.yaml)
+
+## Generated + Enhanced YAML
+Exported Deployment after adding health checks: [generated_yaml/](generated_yaml/)
+generated-yaml/deployment.yaml
+
 ## Steps
 1. In the Red Hat Developer Sandbox (https://sandbox.redhat.com/), select the **+** sign in the header at the top right of the page.
     - Select **Import from YAML**
-    - Paste in the following code and click **Create**
-
-```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-yaml-demo
-  labels:
-    app: nginx-yaml
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nginx-yaml
-  template:
-    metadata:
-      labels:
-        app: nginx-yaml
-    spec:
-      containers:
-        - name: nginx
-          image: nginxinc/nginx-unprivileged:1-alpine
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 30
-          resources:
-            requests:
-              cpu: "50m"
-              memory: "64Mi"
-            limits:
-              cpu: "200m"
-              memory: "128Mi"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-yaml-service
-  labels:
-    app: nginx-yaml
-spec:
-  selector:
-    app: nginx-yaml
-  ports:
-    - name: http
-      port: 8080
-      targetPort: 8080
----
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: nginx-yaml-route
-  labels:
-    app: nginx-yaml
-spec:
-  # Optional: you can omit 'host' and let OpenShift generate one
-  # host: nginx-yaml-demo.apps.<your-sandbox-domain>
-  to:
-    kind: Service
-    name: nginx-yaml-service
-  port:
-    targetPort: http
-```
+    - Paste in the code in [source_yaml/source.yaml](source_yaml/source.yaml) and click **Create**
 
 ![1. Creating from YAML import](1-yaml-upload-demo-1.png)
 
