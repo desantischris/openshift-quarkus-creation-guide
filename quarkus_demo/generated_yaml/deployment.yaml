@@ -1,0 +1,96 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ''
+    app.openshift.io/vcs-uri: 'https://github.com/devfile-samples/devfile-sample-code-with-quarkus.git'
+    openshift.io/generated-by: OpenShiftWebConsole
+  resourceVersion: '6951384196'
+  name: code-with-quarkus-demo
+  uid: 25bd99c7-5f31-4ead-a9e6-e9e7b228767a
+  creationTimestamp: '2025-12-26T20:19:18Z'
+  generation: 3
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2025-12-26T20:19:18Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+        'f:spec':
+          'f:output':
+            'f:to': {}
+          'f:runPolicy': {}
+          'f:source':
+            'f:contextDir': {}
+            'f:git':
+              .: {}
+              'f:uri': {}
+            'f:type': {}
+          'f:strategy':
+            'f:dockerStrategy':
+              .: {}
+              'f:dockerfilePath': {}
+            'f:type': {}
+          'f:triggers': {}
+    - manager: openshift-apiserver
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2025-12-26T21:39:40Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:lastVersion': {}
+  namespace: desantischris-dev
+  labels:
+    app: code-with-quarkus-demo
+    app.kubernetes.io/component: code-with-quarkus-demo
+    app.kubernetes.io/instance: code-with-quarkus-demo
+    app.kubernetes.io/name: code-with-quarkus-demo
+    app.kubernetes.io/part-of: sample-app
+    app.openshift.io/runtime: code-with-quarkus-demo
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'code-with-quarkus-demo:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: src/main/docker/Dockerfile.jvm.staged
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/devfile-samples/devfile-sample-code-with-quarkus.git'
+  triggers:
+    - type: Generic
+      generic:
+        secretReference:
+          name: code-with-quarkus-demo-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: code-with-quarkus-demo-github-webhook-secret
+    - type: ConfigChange
+  runPolicy: Serial
+status:
+  lastVersion: 2
