@@ -1,0 +1,125 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  creationTimestamp: '2026-01-09T19:31:24Z'
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: golang-ex-demo
+    app.kubernetes.io/name: golang-ex-demo
+    operator.tekton.dev/operand-name: openshift-pipelines-addons
+    pipeline.openshift.io/runtime: golang
+    pipeline.openshift.io/runtime-version: 1.18-ubi7
+    pipeline.openshift.io/type: knative
+  managedFields:
+    - apiVersion: tekton.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:operator.tekton.dev/operand-name': {}
+            'f:pipeline.openshift.io/runtime': {}
+            'f:pipeline.openshift.io/runtime-version': {}
+            'f:pipeline.openshift.io/type': {}
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:tasks': {}
+          'f:workspaces': {}
+      manager: Mozilla
+      operation: Update
+      time: '2026-01-09T19:31:24Z'
+  name: golang-ex-demo
+  namespace: desantischris-dev
+  resourceVersion: '7046432117'
+  uid: b85bc594-7022-4a97-995f-c6f03a080292
+spec:
+  params:
+    - default: golang-ex-demo
+      name: APP_NAME
+      type: string
+    - default: 'https://github.com/desantischris/golang-ex'
+      name: GIT_REPO
+      type: string
+    - default: master
+      name: GIT_REVISION
+      type: string
+    - default: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/golang-ex-demo'
+      name: IMAGE_NAME
+      type: string
+    - default: .
+      name: PATH_CONTEXT
+      type: string
+    - default: 1.18-ubi7
+      name: VERSION
+      type: string
+  tasks:
+    - name: fetch-repository
+      params:
+        - name: URL
+          value: $(params.GIT_REPO)
+        - name: REVISION
+          value: $(params.GIT_REVISION)
+        - name: SUBDIRECTORY
+          value: ''
+        - name: DELETE_EXISTING
+          value: 'true'
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: git-clone
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: build
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE_NAME)
+        - name: TLS_VERIFY
+          value: 'false'
+        - name: CONTEXT
+          value: $(params.PATH_CONTEXT)
+        - name: VERSION
+          value: $(params.VERSION)
+      runAfter:
+        - fetch-repository
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: s2i-go
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: kn-service-apply
+      params:
+        - name: ARGS
+          value:
+            - service
+            - apply
+            - $(params.APP_NAME)
+            - '--image=$(params.IMAGE_NAME)'
+      runAfter:
+        - build
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: kn
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+  workspaces:
+    - name: workspace
