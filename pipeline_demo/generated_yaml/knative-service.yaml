@@ -1,0 +1,157 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/route-disabled: 'false'
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: 'https://github.com/desantischris/golang-ex'
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"golang-ex-demo:latest","namespace":"desantischris-dev"},"fieldPath":"spec.template.spec.containers[?(@.name==\"golang-ex-demo\")].image","paused":false}]'
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"serving.knative.dev/v1","kind":"Service","metadata":{"name":"golang-ex-demo","namespace":"desantischris-dev"},"spec":{"template":{"metadata":{"annotations":{"client.knative.dev/user-image":"image-registry.openshift-image-registry.svc:5000/desantischris-dev/golang-ex-demo"}},"spec":{"containers":[{"image":"image-registry.openshift-image-registry.svc:5000/desantischris-dev/golang-ex-demo","name":""}]}}}}'
+    openshift.io/generated-by: OpenShiftWebConsole
+    serving.knative.dev/creator: desantischris
+    serving.knative.dev/lastModifier: desantischris
+  resourceVersion: '7048231359'
+  name: golang-ex-demo
+  uid: fa581b24-933d-452b-8ed9-52f2b8f5d9e1
+  creationTimestamp: '2026-01-09T19:31:24Z'
+  generation: 3
+  managedFields:
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:app.openshift.io/route-disabled': {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
+            'f:image.openshift.io/triggers': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            .: {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:labels':
+                .: {}
+                'f:app.kubernetes.io/component': {}
+                'f:app.kubernetes.io/instance': {}
+                'f:app.kubernetes.io/part-of': {}
+                'f:app.openshift.io/runtime': {}
+                'f:app.openshift.io/runtime-version': {}
+            'f:spec': {}
+      manager: Mozilla
+      operation: Update
+      time: '2026-01-09T19:31:24Z'
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                'f:demo-revision': {}
+      manager: kubectl-patch
+      operation: Update
+      time: '2026-01-10T00:39:00Z'
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:address':
+            .: {}
+            'f:url': {}
+          'f:conditions': {}
+          'f:latestCreatedRevisionName': {}
+          'f:latestReadyRevisionName': {}
+          'f:observedGeneration': {}
+          'f:traffic': {}
+          'f:url': {}
+      manager: controller
+      operation: Update
+      subresource: status
+      time: '2026-01-10T00:39:06Z'
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+        'f:spec':
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                .: {}
+                'f:client.knative.dev/user-image': {}
+            'f:spec':
+              'f:containers': {}
+      manager: kn
+      operation: Update
+      time: '2026-01-10T00:41:03Z'
+  namespace: desantischris-dev
+  labels:
+    app.kubernetes.io/component: golang-ex-demo
+    app.kubernetes.io/instance: golang-ex-demo
+    app.kubernetes.io/name: golang-ex-demo
+    app.kubernetes.io/part-of: sample-app
+    app.openshift.io/runtime: golang
+    app.openshift.io/runtime-version: 1.18-ubi7
+spec:
+  template:
+    metadata:
+      annotations:
+        client.knative.dev/user-image: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/golang-ex-demo'
+        demo-revision: text-update-1
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: golang-ex-demo
+        app.kubernetes.io/instance: golang-ex-demo
+        app.kubernetes.io/part-of: sample-app
+        app.openshift.io/runtime: golang
+        app.openshift.io/runtime-version: 1.18-ubi7
+    spec:
+      containerConcurrency: 0
+      containers:
+        - image: 'image-registry.openshift-image-registry.svc:5000/desantischris-dev/golang-ex-demo'
+          name: user-container
+          readinessProbe:
+            successThreshold: 1
+            tcpSocket:
+              port: 0
+          resources: {}
+      enableServiceLinks: false
+      timeoutSeconds: 300
+  traffic:
+    - latestRevision: true
+      percent: 100
+status:
+  address:
+    url: 'http://golang-ex-demo.desantischris-dev.svc.cluster.local'
+  conditions:
+    - lastTransitionTime: '2026-01-10T00:39:05Z'
+      status: 'True'
+      type: ConfigurationsReady
+    - lastTransitionTime: '2026-01-10T00:39:06Z'
+      status: 'True'
+      type: Ready
+    - lastTransitionTime: '2026-01-10T00:39:06Z'
+      status: 'True'
+      type: RoutesReady
+  latestCreatedRevisionName: golang-ex-demo-00003
+  latestReadyRevisionName: golang-ex-demo-00003
+  observedGeneration: 3
+  traffic:
+    - latestRevision: true
+      percent: 100
+      revisionName: golang-ex-demo-00003
+  url: 'https://golang-ex-demo-desantischris-dev.apps.rm3.7wse.p1.openshiftapps.com'
